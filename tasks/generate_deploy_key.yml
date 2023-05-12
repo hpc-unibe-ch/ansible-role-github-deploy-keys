@@ -5,11 +5,16 @@
     mode: '0600'
     owner: '{{ item.user }}'
 
+- name: Register public key to variable
+  ansible.builtin.command: "cat {{ item.key }}.pub"
+  register: pubkey
+  changed_when: false
+
 - name: Add a new deploy key to a GitHub repository, use an OAuth2 token to authenticate
   community.general.github_deploy_key:
     owner: "{{ item.owner }}"
     repository: "{{ item.repo }}"
     name: "{{ item.deploy_keyname }}"
-    key: "{{ lookup('file', '{{ item.key }}.pub') }}"
+    key: "{{ pubkey.stdout | trim }}"
     token: "{{ item.token }}"
   tags: notest
