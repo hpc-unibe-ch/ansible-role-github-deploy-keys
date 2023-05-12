@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: grvlbit
+  description: A role to create a bunch of github deploy keys
+  company: hpc-unibe-ch
+
+  role_name: github_deploy_keys
+  namespace: ubelix
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: '2.1'
+
+  platforms:
+    - name: EL
+      versions:
+        - '8'
+        - '9'
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+
+  galaxy_tags: []
+
+dependencies: []

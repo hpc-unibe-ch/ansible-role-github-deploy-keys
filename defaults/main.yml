@@ -1,0 +1,14 @@
+---
+# defaults file for github-deploy-keys
+
+gdk_deploy_keys:
+  - name: "repo_name"
+    user: "root"
+    key: "/root/.ssh/id_rsa_name"
+    deploy_keyname: "deploy-token-name"
+    repo: "repo"
+    owner: "repo_owner"
+    token: "github_securetoken"
+
+gdk_manage_ssh_config: false
+gdk_ssh_config_path: '/root/.ssh/config'

@@ -1,0 +1,15 @@
+---
+- name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
+  community.crypto.openssh_keypair:
+    path: '{{ item.key }}'
+    mode: '0600'
+    owner: '{{ item.user }}'
+
+- name: Add a new deploy key to a GitHub repository, use an OAuth2 token to authenticate
+  community.general.github_deploy_key:
+    owner: "{{ item.owner }}"
+    repository: "{{ item.repo }}"
+    name: "{{ item.deploy_keyname }}"
+    key: "{{ lookup('file', '{{ item.key }}.pub') }}"
+    token: "{{ item.token }}"
+  tags: notest

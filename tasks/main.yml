@@ -1,0 +1,16 @@
+---
+
+- name: Generate deploy keys and ssh config for semaphore
+  ansible.builtin.include_tasks: generate_deploy_key.yml
+  with_items:
+    - "{{ gdk_deploy_keys }}"
+
+- name: Generate .ssh/config file with deploy keys
+  ansible.builtin.template:
+    src: "ssh.config.j2"
+    dest: "{{ gdk_ssh_config_path }}"
+    user: '{{ item.user }}'
+    mode: '0600'
+  with_items:
+    - "{{ gdk_deploy_keys }}"
+  when: gdk_manage_ssh_config | bool
