@@ -14,7 +14,6 @@ Role Variables
 ```yaml
 gdk_deploy_keys:
   - name: "repo_name"
-    user: "root"
     key: "/root/.ssh/id_rsa_name"
     deploy_keyname: "deploy-token-name"
     repo: "repo"
@@ -30,7 +29,6 @@ A list of dictionaries controls the repositories that this role should grant acc
 simply copy the `-name` block and adapt the repository settings. 
 
  * `name` sets the repository name (currently only used as unique identifier)
- * `user` set the user account on the ansible host that should own the key.
  * `key` is the name of the ssh-key to be installed
  * `deploy_keyname` is the name of the deploy key as shown on Github
  * `repo` sets the github repository to access
@@ -41,6 +39,12 @@ simply copy the `-name` block and adapt the repository settings.
 For details of the dict keys please see the
 [the ansible github_deploy_key module](https://docs.ansible.com/ansible/latest/collections/community/general/github_deploy_key_module.html)
 documentation.
+
+```yaml
+gdk_user: "root"
+```
+Set the user account on the ansible host that should own the key.
+
 
 ```yaml
 gdk_manage_ssh_config: false
@@ -63,13 +67,13 @@ Example Playbook
   vars:
     gdk_deploy_keys:
       - name: "repo_name"
-        user: "root"
         key: "/root/.ssh/id_rsa_name"
         deploy_keyname: "deploy-token-name"
         repo: "repo"
         owner: "repo_owner"
         token: "github_securetoken"
         state: "present"
+    gdk_user: "root"
     gdk_ssh_config_path: "/var/lib/semaphore/.ssh/config"
     gdk_manage_ssh_config: true
   roles:

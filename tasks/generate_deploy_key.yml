@@ -3,7 +3,7 @@
   community.crypto.openssh_keypair:
     path: '{{ item.key }}'
     mode: '0600'
-    owner: '{{ item.user }}'
+    owner: '{{ gdk_user }}'
 
 - name: Register public key to variable
   ansible.builtin.command: "cat {{ item.key }}.pub"

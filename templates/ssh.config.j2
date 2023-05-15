@@ -6,5 +6,5 @@ Host github.com
    User git
    Preferredauthentications publickey
    {% for key in gdk_deploy_keys %}
-   IdentityFile {{ item.key }}
+   IdentityFile {{ key.key }}
    {% endfor %}
