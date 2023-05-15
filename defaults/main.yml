@@ -9,6 +9,7 @@ gdk_deploy_keys:
     repo: "repo"
     owner: "repo_owner"
     token: "github_securetoken"
+    state: "present"
 
 gdk_manage_ssh_config: false
 gdk_ssh_config_path: '/root/.ssh/config'

@@ -17,4 +17,5 @@
     name: "{{ item.deploy_keyname }}"
     key: "{{ pubkey.stdout | trim }}"
     token: "{{ item.token }}"
+    state: "{{ item.state | default('present') }}"
   tags: notest
